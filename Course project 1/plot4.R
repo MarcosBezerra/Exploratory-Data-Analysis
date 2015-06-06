@@ -1,0 +1,33 @@
+# set working directory
+setwd("C:/Users/marco_000/Desktop/Cursos Marcos/DATA SCIENCE/Exploratory Data Analysis/Course Project 1/source data")
+
+#Open device
+png(filename='plot4.png',width=480,height=480,units='px')
+
+#Make four plots
+par(mfrow=c(2,2))
+
+#plot1
+
+x<-as.numeric(p_consumption$Global_active_power)
+plot(p_consumption$DateTime,x,ylab='Global Active Power (kilowatts)', xlab='', type='l')
+
+#plot2
+plot(p_consumption$DateTime,p_consumption$Voltage,ylab='Voltage', xlab='datetime', type='l')
+
+#plot3
+colors<-c('black','red','blue')
+linhas<-c("Sub_metering_1","Sub_metering_2","Sub_metering_3")
+
+plot(p_consumption$DateTime,p_consumption$Sub_metering_1,type='l',col=colors[1],xlab="",ylab='Energy sub metering')
+lines(p_consumption$DateTime,p_consumption$Sub_metering_2,col=colors[2])
+lines(p_consumption$DateTime,p_consumption$Sub_metering_3,col=colors[3])
+
+legend('topright',legend=linhas,col=colors,lty='solid')
+
+#plot4
+plot(p_consumption$DateTime,p_consumption$Global_reactive_power,ylab='Voltage', xlab='datetime', type='l')
+
+
+#Turn off device
+z<-dev.off()
